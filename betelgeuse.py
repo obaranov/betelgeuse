@@ -520,7 +520,8 @@ def add_test_record(result):
             .format(junit_test_case_id)
         )
         test_case_id = junit_test_case_id
-    test_case = TestCase.query(test_case_id)
+
+    test_case = TestCase.query(re.escape(test_case_id))
     if len(test_case) == 0:
         click.echo(
             'Was not able to find test case {0} with id {1}, skipping...'
